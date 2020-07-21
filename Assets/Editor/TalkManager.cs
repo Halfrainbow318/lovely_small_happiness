@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System.Security.Authentication.ExtendedProtection;
 
 public class TalkManager : MonoBehaviour
 {
