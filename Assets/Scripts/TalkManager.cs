@@ -6,33 +6,43 @@ using System.IO;
 
 public class TalkManager : MonoBehaviour
 {
-    public Text text;
+    public Text scripts;
 
     private int day = 2;
 
-    string FilePath;
-    string FileName;
+    private string FilePath;
+    private string FileName;
 
-    list<string> scene = new List<string>();
+    private string line;
+
+    public List<Talk> Talklist;
+
+    public StringReader stringreader;
 
     private void Start()
     {
-        FileName = "day" + day + ".txt";
-        FilePath = @"C:\Users\ohsei\Desktop\ㅇㅅㅇ\문서들\대학\여름_학기\동아리\lovely_small_happiness\Assets\texts\" + FileName;
+        FileName = "day" + day.ToString() + ".txt";
+        FilePath = Application.dataPath + @"\Resources\" + FileName;
+        Talklist = new List<Talk>();
+    }
 
+    private void Update()
+    {
         ReadFile();
     }
 
     public void ReadFile()
     {
-        TextAsset scenario = texts.Load("day" + day) as TextAsset;
-        StringReader stringreader = new Stringreader(scenario.text);
-        
+        TextAsset scenario = Resources.Load("day" + day.ToString()) as TextAsset;
+        stringreader = new StringReader(scenario.text);
+
+
         while (stringreader != null)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                string line = stringreader.ReadLine();
+                line = stringreader.ReadLine();
+                Debug.Log(line);
             }
 
             if (line == null)
@@ -43,7 +53,8 @@ public class TalkManager : MonoBehaviour
             Talk npcdata = new Talk();
             npcdata.name = line.Split(':')[0];
             npcdata.say = line.Split(':')[1];
-            scene.Add(npcdata);
+            Talklist.Add(npcdata);
         }
+        stringreader.Close();
     }
 }
