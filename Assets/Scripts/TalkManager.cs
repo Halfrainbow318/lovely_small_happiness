@@ -18,6 +18,7 @@ public class TalkManager : MonoBehaviour
     List<string> TextFile = new List<string>(); //텍스트 파일을 한줄 씩 저장할 리스트
     string TextRead; //출력할 대사를 담는 변수
     int num = 0; //한줄씩 읽는 변수
+    int max = 0; //줄 갯수
 
     public List<Talk> TextData; //Talk클래스 리스트 호출
     Talk npcdata = new Talk(); //Talk클래스를 사용하는 목록
@@ -29,11 +30,14 @@ public class TalkManager : MonoBehaviour
         ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, npcdata.alp); //캐릭터 스프라이트 투명화
         IsTalk = true; //대화 시작을 알림
         TextFile.Clear(); //리스트 클리어
+        ReadFile(); //파일을 읽고 불러와서 출력하는 함수
+        max -= 1;
+        Debug.Log(max);
     }
 
     void Update()
     {
-        ReadFile(); //파일을 읽고 불러와서 출력하는 함수
+        Spacebar();
     }
 
     private void ReadFile()
@@ -42,12 +46,25 @@ public class TalkManager : MonoBehaviour
 
         StringReader TextReader = new StringReader(scenario.text); //StringReader 선언
 
-        while (TextRead != null) //비어있는 줄이 나올 때 까지
+        while (TextReader != null) //비어있는 줄이 나올 때 까지
         {
-            TextReader.ReadLine(); //파일 한줄 읽기
-            Debug.Log("읽음");
-            TextFile.Add(TextReader.ToString());
-            Debug.Log("리스트에 넣음");
+            TextRead = TextReader.ReadLine(); //파일 한줄 읽기
+            max++;
+            TextFile.Add(TextRead);
+
+            if (string.IsNullOrEmpty(TextRead) == true) //비어있는 줄이 나온다면
+            {
+                TextReader.Close(); //사용 후 닫기
+                break; //브레이크
+            }
+        }
+    }
+
+    public void Spacebar()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) //스페이스바를 눌렀을 때
+        {
+            TextRead = TextFile[num];
 
             npcdata.name = TextRead.Split(':')[0]; //대사하는 사람의 이름
             npcdata.talk = TextRead.Split(':')[1]; //대사
@@ -55,39 +72,20 @@ public class TalkManager : MonoBehaviour
             npcdata.col = float.Parse(TextRead.Split(':')[3]); //대사하는 사람의 컬러 값
             npcdata.alp = int.Parse(TextRead.Split(':')[4]); //대사하는 사람의 투명도값
 
-            Debug.Log(npcdata.name);
-            Debug.Log(npcdata.talk);
-            Debug.Log(npcdata.ctr);
-            Debug.Log(npcdata.col);
-            Debug.Log(npcdata.alp);
+            nameUI.text = npcdata.name; //이름 표시
+            talkUI.text = npcdata.talk; //대사 표시
 
-            if (TextReader == null) //비어있는 줄이 나온다면
-            {
-                TextReader.Close(); //사용 후 닫기
-                break; //브레이크좀 잡아라 노빠꾸로 다시가네
-            }
-        }
+            ctrRender.sprite = Resources.Load("ctr" + npcdata.ctr.ToString(), typeof(Sprite)) as Sprite; //스프라이트 변경
+            ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, npcdata.alp); //색상, 투명도 설정
 
-        nameUI.text = npcdata.name; //이름 표시
-        talkUI.text = npcdata.talk; //대사 표시
-
-        ctrRender.sprite = Resources.Load("ctr" + npcdata.ctr.ToString(), typeof(Sprite)) as Sprite; //스프라이트 변경
-        ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, npcdata.alp); //색상, 투명도 설정
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.Space)) //스페이스바를 눌렀을 때
-        {
-            print(TextFile[num]);
-            print(num);
+            Debug.Log(num);
             num++;
-            if (num>TextFile.Count())
+            if (num == max)
             {
                 IsTalk = false; //대화 종료를 알림
                 Debug.Log("대화종료");
             }
         }
     }
-}
 
+}
