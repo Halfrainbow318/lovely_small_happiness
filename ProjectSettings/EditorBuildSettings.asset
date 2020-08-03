@@ -12,11 +12,26 @@ EditorBuildSettings:
     path: Assets/Scenes/02_Newgame.unity
     guid: 4505b405bdf68d241850e7247802774f
   - enabled: 1
+    path: Assets/Scenes/03_Continue.unity
+    guid: b5bd7267fc8dd5d4e8c1aa22137993f1
+  - enabled: 1
+    path: Assets/Scenes/04_Gallery.unity
+    guid: 0bc14137b5195b44ebffd2c2fb72070e
+  - enabled: 1
+    path: Assets/Scenes/05_Help.unity
+    guid: 1c56f279187656542bd1e4df052760f7
+  - enabled: 1
     path: Assets/Scenes/06_Setting.unity
     guid: 33dd2104c28e7ef4ea95718d3c2e73df
   - enabled: 1
     path: Assets/Scenes/07_Talk.unity
     guid: 4cafdf303729f7e49b811bcc38b585ea
+  - enabled: 1
+    path: Assets/Scenes/08_Map.unity
+    guid: 95621c6b07335224faa86c00d3e44f9e
+  - enabled: 1
+    path: Assets/Scenes/09_Love.unity
+    guid: 554e2f3e5471f8140bbac01a5bbb75b8
   - enabled: 1
     path: Assets/Scenes/10_Minigames.unity
     guid: 36e897729e4c36c41b09faffb5226ec2
