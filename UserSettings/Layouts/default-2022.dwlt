@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 48
+  controlID: 37
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 49
+  controlID: 38
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -413,20 +413,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: acd00000
-      m_LastClickedID: 53420
-      m_ExpandedIDs: 14a0feff5ea2feffe0a4feff28a5feff68aefeffceb0feff0cbcfeff86c0feff02c2feffaeccfeff84d0fefffed2feff7ed3feff66d4feffe4d4feff30d6feffa6defeff06e0feff66e2feffbaf8feff48fdfeff161fffff641fffff1c21ffff9826ffff9a27fffff4ffffff94850000aa850000ea85000040860000428f00001c91000032910000c8910000f69a0000e49f0000f49f000050a7000060a7000032a80000dea900002ab200003ab200000cb3000026b500008ab50000b4c2000040c70000a4c70000f8d00000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: fa19fffff01bffff041fffff5220ffffe823ffff3424ffff8224ffffca24ffff1825ffff6025ffffae25fffff825ffff4c26ffff9626ffff9a27ffffbc820000168a0000c08b0000308c0000848c0000948c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: talk_load
-        m_OriginalName: talk_load
+        m_Name: talk_script
+        m_OriginalName: talk_script
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 53350
+        m_UserData: 35888
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -835,9 +835,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.18958977, y: 0.34363055, z: 442.45123}
+    m_Target: {x: -0.7953752, y: 1.0681676, z: 7205.673}
     speed: 2
-    m_Value: {x: 0.18958977, y: 0.34363055, z: 442.45123}
+    m_Value: {x: -0.7953752, y: 1.0681676, z: 7205.673}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -887,9 +887,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.5941935
+    m_Target: 4.168952
     speed: 2
-    m_Value: 4.5941935
+    m_Value: 4.168952
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -960,7 +960,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -968,15 +968,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\user\Documents\GitHub\lovely_small_happiness
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 42060000
-    m_LastClickedID: 1602
+    m_SelectedIDs: ca060000
+    m_LastClickedID: 1738
     m_ExpandedIDs: 00000000fe05000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1030,10 +1030,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: acd00000
-    m_LastClickedInstanceID: 53420
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c623000000000000a47c0000ac7c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

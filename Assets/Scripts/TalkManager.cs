@@ -103,7 +103,7 @@ public class TalkManager : MonoBehaviour
             talkUI.text = npcdata.talk; //대사 표시
 
             ctrRender.sprite = Resources.Load("ctr" + npcdata.ctr.ToString(), typeof(Sprite)) as Sprite; //스프라이트 변경
-            ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, npcdata.alp); //색상, 투명도 설정
+            ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, 100); //색상, 투명도 설정
 
             num++; //num+1을 해주어 다음 줄을 읽을 수 있게함
             if (num == max) //만약 현재 읽고 있는 줄이 마지막 줄이라면
