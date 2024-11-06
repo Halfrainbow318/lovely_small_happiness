@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using System.Xml.Linq;
 
 public class TalkManager : MonoBehaviour
 {
     public static TalkManager instance { get; private set; }
 
-    private Text nameUI; //name을 출력하는 텍스트(talk_nametext)를 담는 공간
+    public Text nameUI; //name을 출력하는 텍스트(talk_nametext)를 담는 공간
+    public Text playerName;
     public Text talkUI; //talk를 출력하는 텍스트(talk_scripttext)를 담는 공간
-    private SpriteRenderer ctrRender; //캐릭터 스트라이트 렌더
+    public SpriteRenderer ctrRender; //캐릭터 스트라이트 렌더
     private Sprite ctrUI; //캐릭터 스트라이트를 담는 이미지를 담는 공간
+    public InputField playerInput;
 
-    private GameObject startToMinigame;
+    public GameObject startToMinigame;
 
     private int day = 4; //텍스트 파일을 구분하기 위한 날짜 변수
     private bool IsTalk = false; //대화 상태를 나타내는 변수
@@ -27,23 +31,28 @@ public class TalkManager : MonoBehaviour
     public List<Talk> TextData; //Talk클래스 리스트 호출
     Talk npcdata = new Talk(); //Talk클래스를 사용하는 목록
 
+    public GameObject Panel;    // 이름 결정 확인 및 게임 스타트 UI
+
+    private string name = "";
+
     void Start()
     {
-        ctrRender = GameObject.Find("talk_ctrrender").GetComponent<SpriteRenderer>(); //스프라이트 렌더 선언
-        ctrRender.sprite = GetComponent<Sprite>(); //스프라이트와 연결
-        ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, npcdata.alp); //캐릭터 스프라이트 투명화
-        IsTalk = true; //대화 시작을 알림
-        TextFile.Clear(); //리스트 클리어
-        ReadFile(); //파일을 읽고 불러와서 출력하는 함수
-        max -= 1;
-        startToMinigame = GameObject.Find("MiniGameButton");
-        nameUI = GameObject.Find("talk_name").GetComponent<Text>();
-
-        Debug.Log(max);
-
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
+            ctrRender = GameObject.Find("talk_ctrrender").GetComponent<SpriteRenderer>();
+            //ctrRender = GetComponent<SpriteRenderer>(); //스프라이트 렌더 선언
+            ctrRender.sprite = GetComponent<Sprite>(); //스프라이트와 연결
+            ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, npcdata.alp); //캐릭터 스프라이트 투명화
+            IsTalk = true; //대화 시작을 알림
+            TextFile.Clear(); //리스트 클리어
+            ReadFile(); //파일을 읽고 불러와서 출력하는 함수
+            max -= 1;
+            //startToMinigame = GameObject.Find("MiniGameButton");
+            nameUI.text = name;
+
+            Debug.Log(max);
+
             DontDestroyOnLoad(this);
         }
         else
@@ -104,5 +113,29 @@ public class TalkManager : MonoBehaviour
                 Debug.Log("대화종료"); //대화 종료를 알림
             }
         }
+    }
+
+    public void SetPlayerName()
+    {
+        if(playerInput.text != "")
+        {
+            playerName.text = playerInput.text;
+        }
+        else
+        {
+            playerName.text = "김지훈";
+        }
+
+        name = playerName.text;
+
+        Panel.SetActive(true);
+    }
+
+    public void StartPlay()
+    {
+        Panel.SetActive(false);
+        nameUI.text = name;
+        SceneManager.LoadScene("07_Talk");
+        ctrRender = GameObject.Find("talk_ctrrender").GetComponent<SpriteRenderer>();
     }
 }
