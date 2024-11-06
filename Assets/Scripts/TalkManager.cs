@@ -7,12 +7,14 @@ using System.Linq;
 
 public class TalkManager : MonoBehaviour
 {
-    public Text nameUI; //name을 출력하는 텍스트(talk_nametext)를 담는 공간
+    public static TalkManager instance { get; private set; }
+
+    private Text nameUI; //name을 출력하는 텍스트(talk_nametext)를 담는 공간
     public Text talkUI; //talk를 출력하는 텍스트(talk_scripttext)를 담는 공간
-    public SpriteRenderer ctrRender; //캐릭터 스트라이트 렌더
+    private SpriteRenderer ctrRender; //캐릭터 스트라이트 렌더
     private Sprite ctrUI; //캐릭터 스트라이트를 담는 이미지를 담는 공간
 
-    public GameObject starttominigame;
+    private GameObject startToMinigame;
 
     private int day = 4; //텍스트 파일을 구분하기 위한 날짜 변수
     private bool IsTalk = false; //대화 상태를 나타내는 변수
@@ -27,14 +29,27 @@ public class TalkManager : MonoBehaviour
 
     void Start()
     {
-        ctrRender.GetComponent<SpriteRenderer>(); //스프라이트 렌더 선언
-        ctrRender.sprite = ctrUI; //스프라이트와 연결
+        ctrRender = GameObject.Find("talk_ctrrender").GetComponent<SpriteRenderer>(); //스프라이트 렌더 선언
+        ctrRender.sprite = GetComponent<Sprite>(); //스프라이트와 연결
         ctrRender.color = new Color(npcdata.col, npcdata.col, npcdata.col, npcdata.alp); //캐릭터 스프라이트 투명화
         IsTalk = true; //대화 시작을 알림
         TextFile.Clear(); //리스트 클리어
         ReadFile(); //파일을 읽고 불러와서 출력하는 함수
         max -= 1;
+        startToMinigame = GameObject.Find("MiniGameButton");
+        nameUI = GameObject.Find("talk_name").GetComponent<Text>();
+
         Debug.Log(max);
+
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
@@ -84,7 +99,7 @@ public class TalkManager : MonoBehaviour
             num++; //num+1을 해주어 다음 줄을 읽을 수 있게함
             if (num == max) //만약 현재 읽고 있는 줄이 마지막 줄이라면
             {
-                starttominigame.SetActive(true);
+                startToMinigame.SetActive(true);
                 IsTalk = false; //대화를 비활성화함
                 Debug.Log("대화종료"); //대화 종료를 알림
             }
